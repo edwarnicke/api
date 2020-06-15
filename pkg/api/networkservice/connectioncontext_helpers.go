@@ -64,10 +64,10 @@ func (c *ConnectionContext) MeetsRequirements(original *ConnectionContext) error
 	if err != nil {
 		return err
 	}
-	if original.GetIpContext().GetDstIpRequired() && c.GetIpContext().GetDstIpAddr() == "" {
+	if original.GetIpContext().GetDstIpRequired() && len(c.GetIpContext().GetDstIpAddr()) > 0 {
 		return errors.Errorf("ConnectionContext.DestIp is required and cannot be empty/nil: %v", c)
 	}
-	if original.GetIpContext().GetSrcIpRequired() && c.GetIpContext().GetSrcIpAddr() == "" {
+	if original.GetIpContext().GetSrcIpRequired() && len(c.GetIpContext().GetSrcIpAddr()) > 0 {
 		return errors.Errorf("ConnectionContext.SrcIp is required cannot be empty/nil: %v", c)
 	}
 
